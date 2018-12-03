@@ -25,6 +25,24 @@ L’implémentation de la gestion des droits d’accès est facultative.
 
 La base de données concue pour cette application contient 4 tables :
 
+
+
+## Utilisation du repository
+
+Pour pouvoir réutiliser le repository, il convient tout d'abord d'ajouter un fichier de configuration nommé `config.ini` dans le dossier `includes` à la racine. Ce fichier contient les paramètres suivants :
+
+Paramètre | Explication | Exemple
+--- | --- | ---
+`root_folder` | La racine du site | `/`
+`include_path` | Le chemin absolu du dossier où est stocké le site, doit inclure un `/` à la fin | `/var/www/html/`
+`path` | L'URL de connexion à la base de données | `localhost`
+`port` | Le port de connexion à la base de données | `3306`
+`database` | La base de données utilisée | `base_de_donnees`
+`user` | Le nom de l'utilisateur à utiliser pour accéder et utiliser la base de données | `user`
+`password` | Le mot de passe à utiliser pour l'authentification de l'utilisateur dans la base de données | `password`
+
+Il faut ensuite créer les 4 tables suivantes :
+
 **userClasses** contient le nom des catégories d'utilisateurs :
 
 Nom du champ | Type | Utilisation | Commentaire
@@ -61,19 +79,3 @@ Nom du champ | Type | Utilisation | Commentaire
 `recipe` | `int `| La recette où a été postée le commentaire | Clé étrangère liée à `recipes.id`
 `date_written` | `varchar(255) `| La date à laquelle a été postée le commentaire | Interclassement en `utf8_general_ci`
 `comment` | `varchar(255)`| Le commentaire | Interclassement en `utf8_general_ci`
-
-## Utilisation du repository
-
-Pour pouvoir réutiliser le repository, il convient tout d'abord d'ajouter un fichier de configuration nommé `config.ini` dans le dossier `includes` à la racine. Ce fichier contient les paramètres suivants :
-
-Paramètre | Explication | Exemple
---- | --- | ---
-`root_folder` | La racine du site | `/`
-`include_path` | Le chemin absolu du dossier où est stocké le site, doit inclure un `/` à la fin | `/var/www/html/`
-`path` | L'URL de connexion à la base de données | `localhost`
-`port` | Le port de connexion à la base de données | `3306`
-`database` | La base de données utilisée | `base_de_donnees`
-`user` | Le nom de l'utilisateur à utiliser pour accéder et utiliser la base de données | `user`
-`password` | Le mot de passe à utiliser pour l'authentification de l'utilisateur dans la base de données | `password`
-
-Il faut ensuite créer la base de données utilisée par l'application en suivant le schéma décrit plus haut.
