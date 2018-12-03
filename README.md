@@ -26,12 +26,14 @@ L’implémentation de la gestion des droits d’accès est facultative.
 La base de données concue pour cette application contient 4 tables :
 
 **userClasses** contient le nom des catégories d'utilisateurs :
+
 Nom du champ | Type | Utilisation | Commentaire
 --- | --- | --- | ---
 `id` | `int` | Identifiant unique de chaque entrée | Clé primaire
 `name` | `varchar(255)`| Nom d'affichage de la catégorie | Interclassement en `utf8_general_ci`
 
 **users** contient la liste des utilisateurs :
+
 Nom du champ | Type | Utilisation | Commentaire
 --- | --- | --- | ---
 `id` | `int` | Identifiant unique de chaque entrée | Clé primaire
@@ -41,6 +43,7 @@ Nom du champ | Type | Utilisation | Commentaire
 `userClass` | `int`| La catégorie de l'utilisateur | Clé étrangère liée à `userClasses.id`
 
 **recipes** contient la liste des recettes :
+
 Nom du champ | Type | Utilisation | Commentaire
 --- | --- | --- | ---
 `id` | `int` | Identifiant unique de chaque entrée | Clé primaire
@@ -50,6 +53,7 @@ Nom du champ | Type | Utilisation | Commentaire
 `steps` | `int`| Le nombre d'étapes | Clé étrangère liée à `userClasses.id`
 
 **comments** contient la liste des commentaires postés :
+
 Nom du champ | Type | Utilisation | Commentaire
 --- | --- | --- | ---
 `id` | `int` | Identifiant unique de chaque entrée | Clé primaire
