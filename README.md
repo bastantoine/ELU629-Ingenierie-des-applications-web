@@ -21,12 +21,6 @@ Une recette dispose au minium d’un titre, d’une liste d’ingrédients et d�
 
 L’implémentation de la gestion des droits d’accès est facultative.
 
-## Base de données à utiliser
-
-La base de données concue pour cette application contient 4 tables :
-
-
-
 ## Utilisation du repository
 
 Pour pouvoir réutiliser le repository, il convient tout d'abord d'ajouter un fichier de configuration nommé `config.ini` dans le dossier `includes` à la racine. Ce fichier contient les paramètres suivants :
