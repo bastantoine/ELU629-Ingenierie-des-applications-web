@@ -1,0 +1,131 @@
+
+body {
+  width:100%;
+  margin:0;
+  padding:0;
+  font:75%/1.4 verdana,Helvetica,sans-serif;
+  background-image:url(https://observatoire-des-aliments.fr/wp-content/uploads/2017/11/e%CC%81pices.jpg);
+  text-align:center;
+}
+
+h1,h2 {
+  display:none;
+}
+
+h3 {
+  height:10%;
+  margin:0;
+  padding:0;
+
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+p {
+  margin:0;
+  padding:0;
+}
+
+/* ////////////// layout ///////////////// */
+
+.page-wrapper {
+  width:100%;
+  margin: auto;
+  padding: 0%;
+  position:relative;
+  color:#454545;
+  text-align:center;
+}
+
+.summary {
+  width:100%;
+  color:#FFFFFF;
+  display:block;
+  padding-bottom:3%;
+  font-weight: bolder;
+  font-size: 600%;
+  background-color: #333;
+}
+
+.preamble, .recipe {
+  width:60%;
+  margin: auto;
+  margin-bottom: 8%;
+  background-color:#333;
+  background-repeat:repeat-y;
+  color:#ffffff;
+  display:block;
+  padding:0;
+}
+
+.sidebar {
+  position:absolute;
+  top:0%;
+  right:0%;
+  margin-right: 5%;
+}
+
+.summary p, .recipe p, .preamble p {
+  text-align: center;
+}
+
+.form {
+  background-color:#333;
+  margin-right: 5%;
+  padding:1px;
+  width:inherit;
+
+
+}
+
+.fieldset {
+  padding:0 20px 20px 20px;
+  margin-bottom:5%;
+  border:1px solid #DF3F3F;
+  background-color: #333;
+  color: white; 
+  width:90%;
+  margin-right: 5%;
+}
+
+input[type=submit] {
+  margin-top: 3%;
+  width:inherit;
+  margin-left:5%;
+  color: #ffffff;
+  box-shadow:1px 1px 1px;
+  background-color: #333;
+  cursor:pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #111;
+}
+
+ul {
+  list-style-type: none;
+  margin-top : 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  box-shadow: 4px 4px gold;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 20px 30px;
+  text-decoration: none;
+  font-size:25px; 
+}
+
+li a:hover {
+  background-color: #111;
+}
+
