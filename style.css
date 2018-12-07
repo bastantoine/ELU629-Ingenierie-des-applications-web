@@ -116,6 +116,10 @@ li {
   float: left;
 }
 
+a {
+  color:white;
+}
+
 li a {
   display: block;
   color: white;
