@@ -7,7 +7,7 @@
 </head>
 <body>
   <h1>Ajouter une recette</h1>	
-  <form>
+  <form method="post" action="envoi_recette.php">
 	Nom de la recette : <input type="text" name="nom_recette"><br>
 	Catégorie(s) :<br>
 		    <input type="checkbox" name="entree" id="entree"><label for="entree">Entrée</label><br>
