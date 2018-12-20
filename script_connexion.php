@@ -30,6 +30,7 @@ if(!empty($_POST))
 			$_SESSION['type'] = $user['type'];
 			$_SESSION['statut'] = $user['statut'];
 			$_SESSION['connecte'] = true;
+			$_SESSION['idUtilisateur'] = $user["id"];
 			header("Location: index.php");
 		}
 	}

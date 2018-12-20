@@ -1,12 +1,11 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 	<meta charset="utf-8">
 	<title>Rechercher</title>
-
 	<link rel="stylesheet" media="screen" href="style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="author" content="Paul VALOIS, Guillaume GHIENNE" >
 	<meta name="description" content="An exemple of web page for cooking application.">
 	<meta name="robots" content="all">
 </head>

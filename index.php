@@ -6,7 +6,6 @@
 	<title>Accueil</title>
 	<link rel="stylesheet" media="screen" href="style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="author" content="Paul VALOIS, Guillaume GHIENNE" >
 	<meta name="description" content="An exemple of web page for cooking application.">
 	<meta name="robots" content="all">
 </head>
@@ -27,15 +26,15 @@
 			
 			<?php
 				include("connexionpdo.php");
-				$query = $db->query("SELECT * FROM recettes LIMIT 5");
+				$query = $db->query("SELECT id, nom, recette FROM recettes LIMIT 5");
 
 				while($data = $query->fetch()) {
 
 			?>
 
 			<div class="recipe" id="recipe" role="article">
-				<h3><?php echo $data["nom"]; ?></h3>
-				<p><?php echo str_replace(array("\r\n", "\n", "\r"),'<br />' ,$data["recette"]); ?></br>
+				<p><h3><a href="recette.php?id=<?php echo $data["id"]; ?>"><?php echo $data["nom"]; ?></a></h3>
+				<?php echo str_replace(array("\r\n", "\n", "\r"),'<br />' ,$data["recette"]); ?></br></p>
 			</div>
 
 			<?php
