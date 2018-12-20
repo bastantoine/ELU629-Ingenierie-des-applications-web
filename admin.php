@@ -1,11 +1,8 @@
 <?php
 session_start();
-include 'functions.php';
-if(isset($_SESSION["login"])){
-    $login=$_SESSION["login"];
+if(!isset($_SESSION["connecte"]) || $_SESSION['connecte'] == false || $_SESSION["type"] != "admin"){
+	header("Location: index.php");
 }
-else
-    header("Location: index.php");
 ?>
 <!doctype html>
 <html lang="fr">

@@ -1,9 +1,8 @@
-<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 	<meta charset="utf-8">
-	<title>Accueil</title>
+	<title>Inscription</title>
 	<link rel="stylesheet" media="screen" href="style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="author" content="Paul VALOIS, Guillaume GHIENNE" >
@@ -25,34 +24,14 @@
 
 		<div class="main supporting" id="supporting" role="main">
 			
-			<?php
-				include("connexionpdo.php");
-				$query = $db->query("SELECT * FROM recettes LIMIT 5");
-
-				while($data = $query->fetch()) {
-
-			?>
-
-			<div class="recipe" id="recipe" role="article">
-				<h3><?php echo $data["nom"]; ?></h3>
-				<p><?php echo str_replace(array("\r\n", "\n", "\r"),'<br />' ,$data["recette"]); ?></br>
-			</div>
-
-			<?php
-
-				}
-
-				$query->closeCursor();
+        <form method="post" action="script_inscription.php">
+            Nom : <input type="text" name="nom"><br/>
+            Prenom : <input type="text" name="prenom"><br/>
+            E-mail : <input type="email" name="email"><br/>
+            Mot de passe : <input type="password" name="password"><br/>
+            <input type="submit" value="Envoyer">
+        </form>
 			
-			?>
-			<div class="recipe" id="recipe" role="article">
-				<h3>Aperçu</h3>
-				<p>Aperçu recette 2</p></br>
-			</div>
-			<div class="recipe" id="recipe" role="article">
-				<h3>Aperçu</h3>
-				<p>Aperçu recette 3</p></br>
-			</div>
 		</div>
 		<?php include("connexion.php"); ?>
 	</div>

@@ -1,7 +1,14 @@
 <?php
-	$server="localhost";
-	$admin="mysqlAdmin";
-	$password="mysqlPwd";
-	$bd="site_recettes";
-	$pdo=new PDO("mysql:host=$server;dbname=$bd", $admin, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+
+	$config = parse_ini_file("config.ini");
+
+	try {
+        $db = new PDO('mysql:host='.$config["server"].';dbname='.$config["database"], $config["login"], $config["password"]);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (Exception $exception) {
+        die('Erreur : ' . $exception->getMessage());
+    }
+    $q = $db->query("SET NAMES UTF8");
+    $q->closeCursor();
+
 ?>
