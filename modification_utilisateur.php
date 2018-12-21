@@ -1,5 +1,12 @@
+<?php
+
+// Auteurs : Corentine & Soriba
+
+session_start();
+
+?>
 <?php session_start() ?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
     <?php include("includes/header.php"); ?>
@@ -15,7 +22,7 @@
                     $idUtilisateur = intval($_GET["id"]);
                     
                     if($idUtilisateur != $_SESSION["idUtilisateur"] && $_SESSION["type"] != "admin")
-                        header("Location: error/error_acces.php");
+                        header("Location: error_acces.php");
                 
                     include("includes/connexionpdo.php");
 

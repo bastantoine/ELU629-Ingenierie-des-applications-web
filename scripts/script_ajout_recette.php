@@ -1,4 +1,7 @@
 <?php
+
+// Auteurs : Paul & Guillaume
+
 session_start();
 include("../includes/connexionpdo.php");
 

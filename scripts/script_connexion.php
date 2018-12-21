@@ -1,5 +1,7 @@
 <?php
 
+// Auteurs : Bastien & Pierre-Adrien
+
 session_start();
 
 if(!empty($_POST)) 
@@ -12,12 +14,12 @@ if(!empty($_POST))
 		$user = $requete->fetchAll()[0];
 		if(htmlentities($_POST['email']) != $user['email']) 
 		{
-			header("Location: ../error/error_email.php");
+			header("Location: ../error_email.php");
 		}
 		//elseif(hash("md5", htmlentities($_POST['password'])) != $user['mdp'])
 		elseif(htmlentities($_POST['password']) != $user['mdp']) 
 		{  
-			header("Location: ../error/error_password.php");
+			header("Location: ../error_password.php");
 		}
 		else
 		{

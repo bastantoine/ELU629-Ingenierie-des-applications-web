@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php
+
+// Auteurs : Corentine & Soriba
+
+session_start();
+
+?>
 <!doctype html>
 <html lang="fr">
 <head>

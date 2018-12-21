@@ -1,5 +1,11 @@
-<?php session_start() ?>
-<!DOCTYPE html>
+<?php
+
+// Auteurs : Corentine & Soriba
+
+session_start();
+
+?>
+<!doctype html>
 <html lang="fr">
 <head>
     <?php include("includes/header.php"); ?>
@@ -22,7 +28,7 @@
                     $query->closeCursor();
                 
                     if($commentaire["idAuteur"] != $idUtilisateur)
-                        header("Location: error/error_acces.php");
+                        header("Location: error_acces.php");
                 
                     ?>
                     <h1>Modifier un commentaire</h1>

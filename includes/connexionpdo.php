@@ -1,5 +1,7 @@
 <?php
 
+// Auteurs : Bastien & Pierre-Adrien
+
 	$config = parse_ini_file("config.ini");
 
 	try {

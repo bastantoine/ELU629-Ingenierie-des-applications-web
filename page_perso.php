@@ -1,10 +1,13 @@
 <?php
+	
+	// Auteurs : Bastien & Pierre-Adrien
+
 	session_start();
 	if(!isset($_SESSION["connecte"]) || $_SESSION['connecte'] == false){
 		header("Location: index.php");
 	}
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
 	<?php include("includes/header.php"); ?>

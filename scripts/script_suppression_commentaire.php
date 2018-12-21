@@ -1,4 +1,7 @@
 <?php
+
+// Auteurs : Corentine & Soriba
+
 session_start();
 
 if(!isset($_SESSION) || !isset($_SESSION["connecte"]) || !isset($_GET))

@@ -1,4 +1,7 @@
 <?php
+
+// Auteurs : Corentine & Soriba
+
 session_start();
 include("../includes/connexionpdo.php");
 

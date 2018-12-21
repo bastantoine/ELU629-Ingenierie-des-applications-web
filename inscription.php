@@ -1,5 +1,11 @@
-<?php session_start() ?>
-<!DOCTYPE html>
+<?php
+
+// Auteurs : Corentine & Soriba
+
+session_start();
+
+?>
+<!doctype html>
 <html lang="fr">
 <head>
     <?php include("includes/header.php"); ?>
@@ -30,7 +36,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="password" class="col-lg-3 col-form-label">Nom de la recette</label>
+						<label for="password" class="col-lg-3 col-form-label">Mot de passe</label>
 						<div class="col-lg-9">
 							<input type="password" class="form-control" name="password" id="password">
 						</div>

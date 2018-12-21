@@ -1,3 +1,10 @@
+<?php
+
+// Auteurs : Paul & Guillaume
+
+session_start();
+
+?>
 <!doctype html>
 <html lang="fr">
 <head>

@@ -1,5 +1,12 @@
+<?php
+
+// Auteurs : Paul & Guillaume
+
+session_start();
+
+?>
 <?php session_start() ?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
 	<?php include("includes/header.php"); ?>
