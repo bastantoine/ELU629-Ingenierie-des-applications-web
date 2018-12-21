@@ -1,9 +1,9 @@
 <?php
 session_start();
-include("connexionpdo.php");
+include("../includes/connexionpdo.php");
 
 if(!isset($_POST))
-    header("Location: recette.php?id=".$idRecette);
+    header("Location: ../recette.php?id=".$idRecette);
 
 $idRecette = intval($_GET["idRecette"]);
 
@@ -14,6 +14,6 @@ $query->bindValue("commentaire", $_POST["commentaire"]);
 $query->execute();
 $query->closeCursor();
 
-header("Location: recette.php?id=".$idRecette);
+header("Location: ../recette.php?id=".$idRecette);
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("connexionpdo.php");
+include("../includes/connexionpdo.php");
 
 function calculerTemps($temps) {
 	$array = explode(":", $temps);
@@ -47,9 +47,6 @@ $query = $db->query("SELECT id FROM recettes ORDER BY id DESC LIMIT 1");
 $id = $query->fetchAll()[0]["id"];
 $query->closeCursor();
 
-include("script_update_type.php");
-updateTypeUtilisateur($_SESSION["idUtilisateur"]);
-
-header("Location: recette.php?id=".$id);
+header("Location: ../recette.php?id=".$id);
 
 ?>

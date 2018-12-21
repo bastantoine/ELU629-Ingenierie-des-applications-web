@@ -2,9 +2,9 @@
 session_start();
 
 if(!isset($_POST) || !isset($_GET))
-    header("Location: index.php");
+    header("Location: ../index.php");
 
-include("connexionpdo.php");
+include("../includes/connexionpdo.php");
 
 $idRecette = intval($_GET["id"]);
 
@@ -13,7 +13,7 @@ $idAuteur = $query->fetchAll()[0]["idAuteur"];
 $query->closeCursor();
 
 if($idAuteur != $_SESSION["idUtilisateur"] && $_SESSION["statut"] != "admin")
-    header("Location: index.php");
+    header("Location: ../index.php");
 
 function calculerTemps($temps) {
 	$array = explode(":", $temps);
@@ -56,6 +56,6 @@ $query->bindValue("recette", $_POST["recette"]);
 $query->execute();
 $query->closeCursor();
 
-header("Location: recette.php?id=".$idRecette);
+header("Location: ../recette.php?id=".$idRecette);
 
 ?>

@@ -1,38 +1,46 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<meta charset="utf-8">
+    <?php include("includes/header.php"); ?>
 	<title>Inscription</title>
-	<link rel="stylesheet" media="screen" href="style.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="An exemple of web page for cooking application.">
-	<meta name="robots" content="all">
 </head>
-<body id="css-exemple">
-	<div class="page-wrapper">
-		<section class="intro" id="intro">
-			<div class="summary" id="summary" role="article">
-				<p>Miam&Miams</p>
-			</div>
-			<?php include("navigation.php"); ?>
-			<div class="preamble" id="preamble" role="article">
-				<h3>Preamble</h3>
-				<p>En dessous on doit pouvoir voir des aperçus de recettes (titre, note, diffuculté, image, auteur). En cliquant sur les aperçus, cela mène aux recettes entières</p>
-			</div>
-		</section>
-
-		<div class="main supporting" id="supporting" role="main">
-			
-        <form method="post" action="script_inscription.php">
-            Nom : <input type="text" name="nom"><br/>
-            Prenom : <input type="text" name="prenom"><br/>
-            E-mail : <input type="email" name="email"><br/>
-            Mot de passe : <input type="password" name="password"><br/>
-            <input type="submit" value="Envoyer">
-        </form>
-			
+<body>
+<?php include("includes/navigation.php"); ?>
+	<div class="container">
+		<div class="row">	
+            <div class="col-lg-12">
+                <form method="post" action="scripts/script_inscription.php">
+					<div class="form-group row">
+						<label for="nom" class="col-lg-3 col-form-label">Nom</label>
+						<div class="col-lg-9">
+							<input type="text" class="form-control" name="nom" id="nom" value="<?php echo $nomRecette; ?>">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="prenom" class="col-lg-3 col-form-label">Prenom</label>
+						<div class="col-lg-9">
+							<input type="text" class="form-control" name="prenom" id="prenom">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="email" class="col-lg-3 col-form-label">Email</label>
+						<div class="col-lg-9">
+							<input type="email" class="form-control" name="email" id="email">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="password" class="col-lg-3 col-form-label">Nom de la recette</label>
+						<div class="col-lg-9">
+							<input type="password" class="form-control" name="password" id="password">
+						</div>
+					</div>
+					<div class="offset-lg-3 col-lg-9">
+						<button type="submit" class="btn btn-primary">Envoyer</button>
+					</div>
+				</form>
+            </div>	
 		</div>
-		<?php include("connexion.php"); ?>
 	</div>
 </body>
 </html>

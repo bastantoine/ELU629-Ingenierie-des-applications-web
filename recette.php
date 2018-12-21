@@ -2,28 +2,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<meta charset="utf-8">
+	<?php include("includes/header.php"); ?>
 	<title>Recette</title>
-	<link rel="stylesheet" media="screen" href="style.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="An exemple of web page for cooking application.">
-	<meta name="robots" content="all">
 </head>
-<body id="css-exemple">
-	<div class="page-wrapper">
-		<section class="intro" id="intro">
-			<div class="summary" id="summary" role="article">
-				<p>Miam&Miams</p>
-			</div>
-			<?php include("navigation.php"); ?>
-			<div class="preamble" id="preamble" role="article">
-				<h3>Preamble</h3>
-				<p>En dessous on doit pouvoir voir des aperçus de recettes (titre, note, diffuculté, image, auteur). En cliquant sur les aperçus, cela mène aux recettes entières</p>
-			</div>
-		</section>
-
-		<div class="main supporting" id="supporting" role="main">
-			
+<body>
+	<?php include("includes/navigation.php"); ?>
+	<div class="container">
+		<div class="row">
 			<?php
 				
 				function formatTemps($temps) {
@@ -33,10 +18,20 @@
 						return $heures.'h0'.$minutes;
 					return $heures.'h'.$minutes;
 				}
+
+				function showRange($numberOn, $numberMax) {
+					$numberOff = $numberMax - $numberOn;
+					for($i = 0; $i<$numberOn; $i++) {
+						echo '<i class="fas fa-star"></i>';
+					}
+					for($i = 0; $i<$numberOff; $i++) {
+						echo '<i class="far fa-star"></i>';
+					}
+				}
 				
 				$idRecette = intval($_GET['id']);
 
-				include("connexionpdo.php");
+				include("includes/connexionpdo.php");
 				
 				$query = $db->query("SELECT * FROM recettes WHERE id = ".$idRecette);
 				$recette = $query->fetchAll()[0];
@@ -48,53 +43,58 @@
 
 			?>
 
-			<div class="recipe" id="recipe" role="article">
-				<p>
-					<h3><?php echo $recette["nom"]; ?></h3>
-					Catégorie : 
-					<?php
-					
-						if($recette['entree'] == 1) {
-							echo 'Entrée';
-						} elseif($recette['plat'] == 1) {
-							echo 'Plat';
-						} elseif($recette['dessert'] == 1) {
-							echo 'Dessert';
-						}
-					
-					?><br/>
-
-					Difficulté : <?php echo $recette['difficulte']; ?>/5<br/>
-					Coût : <?php echo $recette['cout']; ?>/5<br/>
-					Temps : <?php echo formatTemps($recette['temps']); ?>
-					<h5>Ingrédients</h5>
-					<?php echo str_replace(array("\r\n", "\n", "\r"),'<br />' ,$recette["ingredients"]); ?></br>
-
-					<h5>Etapes</h5>
-					<?php echo str_replace(array("\r\n", "\n", "\r"),'<br />' ,$recette["recette"]); ?></br>
-					Recette par : <?php echo $auteur["prenom"]." ".$auteur["nom"]; ?>
-
-					<h5>Commentaires</h5>
-					<a href="ajout_commentaire.php?idRecette=<?php echo $idRecette; ?>">Ajouter un commentaire</a>
-					<?php
-
-						$query = $db->query("SELECT commentaire.date, commentaire.commentaire, utilisateurs.nom, utilisateurs.prenom FROM commentaire JOIN utilisateurs ON utilisateurs.id = commentaire.idAuteur WHERE idRecette = ".$idRecette);
-						echo '<ul>';
-						while($commentaire = $query->fetch()) {
-							?>
-
-							<li><?php echo $commentaire["prenom"]." ".$commentaire["nom"].' - '.$commentaire["date"].' : '.$commentaire["commentaire"]; ?></li>
-
-							<?php
-						}
-						echo '</ul>';
-						$query->closeCursor();	
-
-					?>
-				</p>
+			<div class="col-lg-12">
+				<h3><?php echo $recette["nom"]; ?></h3>
+				Recette par : <?php echo $auteur["prenom"]." ".$auteur["nom"]; ?>
 			</div>
 		</div>
-		<?php include("connexion.php"); ?>
+		<div class="row">
+			<div class="col-lg-8">
+				<h5>Etapes</h5>
+				<?php echo str_replace(array("\r\n", "\n", "\r"),'<br />' ,$recette["recette"]); ?></br>
+			</div>
+			<div class="col-lg-4">
+				Catégorie : 
+				<?php
+				
+					if($recette['entree'] == 1) {
+						echo 'Entrée';
+					} elseif($recette['plat'] == 1) {
+						echo 'Plat';
+					} elseif($recette['dessert'] == 1) {
+						echo 'Dessert';
+					}
+				
+				?><br/>
+
+				Difficulté : <?php showRange($recette['difficulte'], 5); ?><br/>
+				Coût : <?php showRange($recette['cout'], 5); ?><br/>
+				Temps : <?php echo formatTemps($recette['temps']); ?>
+				<h5>Ingrédients</h5>
+				<?php echo str_replace(array("\r\n", "\n", "\r"),'<br />' ,$recette["ingredients"]); ?></br>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<h5>Commentaires</h5>
+				<?php
+
+					$query = $db->query("SELECT commentaire.date, commentaire.commentaire, utilisateurs.nom, utilisateurs.prenom FROM commentaire JOIN utilisateurs ON utilisateurs.id = commentaire.idAuteur WHERE idRecette = ".$idRecette);
+					echo '<ul>';
+					while($commentaire = $query->fetch()) {
+						?>
+
+						<li><?php echo $commentaire["prenom"]." ".$commentaire["nom"].' - '.$commentaire["date"].' : '.$commentaire["commentaire"]; ?></li>
+
+						<?php
+					}
+					echo '</ul>';
+					$query->closeCursor();	
+
+				?>
+				<a href="ajout_commentaire.php?idRecette=<?php echo $idRecette; ?>">Ajouter un commentaire</a>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

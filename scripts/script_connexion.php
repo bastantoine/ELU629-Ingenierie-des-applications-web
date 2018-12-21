@@ -6,21 +6,18 @@ if(!empty($_POST))
 {
 	if(!empty($_POST['email']) && !empty($_POST['password'])) 
 	{
-		include('connexionpdo.php');
+		include('../includes/connexionpdo.php');
 		
 		$requete = $db->query("SELECT * FROM utilisateurs WHERE email = '".htmlentities($_POST["email"])."'");
 		$user = $requete->fetchAll()[0];
-		echo '<pre>';
-		var_dump($user);
-		echo '</pre>';
 		if(htmlentities($_POST['email']) != $user['email']) 
 		{
-			header("Location: error_email.php");
+			header("Location: ../error/error_email.php");
 		}
 		//elseif(hash("md5", htmlentities($_POST['password'])) != $user['mdp'])
 		elseif(htmlentities($_POST['password']) != $user['mdp']) 
 		{  
-			header("Location: error_password.php");
+			header("Location: ../error/error_password.php");
 		}
 		else
 		{
@@ -31,12 +28,12 @@ if(!empty($_POST))
 			$_SESSION['statut'] = $user['statut'];
 			$_SESSION['connecte'] = true;
 			$_SESSION['idUtilisateur'] = $user["id"];
-			header("Location: index.php");
+			header("Location: ../index.php");
 		}
 	}
 	else
 	{
-		header("Location: inscription.php");
+		header("Location: ../inscription.php");
 	}
 }
 ?>
