@@ -18,7 +18,7 @@
 			<?php include("navigation.php"); ?>
 			<div class="preamble" id="preamble" role="article">
 				<h3>Preamble</h3>
-				<p>En dessous on doit pouvoir voir des aperçus de recettes (titre, note, diffuculté, image, auteur). En cliquant sur les aperçus, cela mène aux recettes entières</p>
+				<p>En dessous on doit pouvoir voir des aperçus de recettes (titre, note, difficulté, image, auteur). En cliquant sur les aperçus, cela mène aux recettes entières</p>
 			</div>
 		</section>
 
@@ -26,7 +26,7 @@
 			
 			<?php
 				include("connexionpdo.php");
-				$query = $db->query("SELECT id, nom, recette FROM recettes LIMIT 5");
+				$query = $db->query("SELECT id, nom, recette FROM recettes ORDER BY id DESC LIMIT 5");
 
 				while($data = $query->fetch()) {
 

@@ -41,18 +41,23 @@ if(!isset($_SESSION["connecte"]) || $_SESSION['connecte'] == false){
 					Statut : <?php echo $user["statut"]; ?><br/>
 					
 					<h5>Mes recettes</h5>
-					<ul>
+					<table>
 					<?php
-
-						$query = $db->query("SELECT id, nom FROM utilisateurs WHERE id = ".$_SESSION["idUtilisateur"]);
+						$query = $db->query("SELECT id, nom FROM recettes WHERE idAuteur = ".$_SESSION["idUtilisateur"]);
 						while($recette = $query->fetch()) {
 							?>
-								<li><a href="recette.php?id=<?php echo $recette["id"]; ?>"><?php echo $recette["nom"]; ?></a></li>
+								<tr>
+									<td><a href="recette.php?id=<?php echo $recette["id"]; ?>"><?php echo $recette["nom"]; ?></a></td>
+									<td><a href="modifier_recette.php?id=<?php echo $recette["id"]; ?>">Modifier la recette</a></td>
+									<td><a href="supprimer_recette.php?id=<?php echo $recette["id"]; ?>">Supprimer la recette</a></td>
+								</tr>
 							<?php
 						}
 						$query->closeCursor();
 					?>
-					</ul>
+					</table>
+
+					<a href="ajout_recette.php">Créer une recette</a>
 					
 					<h5>Mes commentaires</h5>
 					<table>
