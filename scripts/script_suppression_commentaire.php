@@ -1,6 +1,7 @@
 <?php
 session_start();
-if(!isset($_GET))
+
+if(!isset($_SESSION) || !isset($_SESSION["connecte"]) || !isset($_GET))
     header("Location: ../index.php");
 
 include("../includes/connexionpdo.php");
@@ -11,7 +12,7 @@ $query = $db->query("SELECT idAuteur FROM commentaire WHERE id = ".$idCommentair
 $idAuteur = $query->fetchAll()[0]["idAuteur"];
 $query->closeCursor();
 
-if($idAuteur != $_SESSION["idUtilisateur"] && $_SESSION["statut"] != "admin")
+if($idAuteur != $_SESSION["idUtilisateur"] || $_SESSION["statut"] != "admin")
     header("Location: ../index.php");
 
 $query = $db->query('DELETE FROM commentaire WHERE id = '.$idCommentaire);

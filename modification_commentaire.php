@@ -15,14 +15,14 @@
                     include("includes/connexionpdo.php");
                 
                     $idCommentaire = intval($_GET["id"]);
-                    $idUtilisateur = $_SESSION["idUtilisateur"];
+                    $idUtilisateur = intval($_SESSION["idUtilisateur"]);
                 
                     $query = $db->query("SELECT commentaire.id AS idCommentaire, commentaire.commentaire, commentaire.idAuteur, recettes.nom FROM commentaire JOIN recettes ON recettes.id = commentaire.idRecette WHERE commentaire.id = ".$idCommentaire);
                     $commentaire = $query->fetchAll()[0];
                     $query->closeCursor();
                 
                     if($commentaire["idAuteur"] != $idUtilisateur)
-                        header("Location: error_acces.php");
+                        header("Location: error/error_acces.php");
                 
                     ?>
                     <h1>Modifier un commentaire</h1>

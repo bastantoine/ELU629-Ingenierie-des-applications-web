@@ -1,8 +1,8 @@
 <?php
-session_start();
-if(!isset($_SESSION["connecte"]) || $_SESSION['connecte'] == false){
-	header("Location: index.php");
-}
+	session_start();
+	if(!isset($_SESSION["connecte"]) || $_SESSION['connecte'] == false){
+		header("Location: index.php");
+	}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -32,6 +32,9 @@ if(!isset($_SESSION["connecte"]) || $_SESSION['connecte'] == false){
 					Adresse email : <?php echo $user["email"]; ?><br/>
 					Catégorie : <?php echo $user["type"]; ?><br/>
 					Statut : <?php echo $user["statut"]; ?><br/>
+					Id : <?php echo $_SESSION["idUtilisateur"]; ?><br/>
+	
+					<a href="modification_utilisateur.php?id=<?php echo $_SESSION["idUtilisateur"]; ?>"><button class="btn btn-default">Modifier mes informations</button></a>
 					
 					<h5>Mes recettes</h5>
 					<table class="table table-striped">

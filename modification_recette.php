@@ -12,33 +12,33 @@
             <div class="col-lg-12">
                 <?php
             			
-                function formatTemps($temps) {
-                    $heures = intdiv($temps, 60);
-                    $minutes = $temps % 60;
-                    $time = '';
-                    if($heures < 10)
-                        $time = '0'.$heures.':';
-                    else
-                        $time = $heures.':';
-                    if($minutes < 10)
-                        $time .= '0'.$minutes;
-                    else
-                        $time .= $minutes;
-                    return $time;
-                }
-            
-                include("includes/connexionpdo.php");
-            
-                $idRecette = intval($_GET["id"]);
-                $idUtilisateur = $_SESSION["idUtilisateur"];
-            
-                $query = $db->query("SELECT * FROM recettes WHERE id = ".$idRecette);
-                $recette = $query->fetchAll()[0];
-                $query->closeCursor();
-            
-                if($recette["idAuteur"] != $idUtilisateur)
-                    header("Location: error_acces.php");
-            
+                    function formatTemps($temps) {
+                        $heures = intdiv($temps, 60);
+                        $minutes = $temps % 60;
+                        $time = '';
+                        if($heures < 10)
+                            $time = '0'.$heures.':';
+                        else
+                            $time = $heures.':';
+                        if($minutes < 10)
+                            $time .= '0'.$minutes;
+                        else
+                            $time .= $minutes;
+                        return $time;
+                    }
+                
+                    include("includes/connexionpdo.php");
+                
+                    $idRecette = intval($_GET["id"]);
+                    $idUtilisateur = intval($_SESSION["idUtilisateur"]);
+                
+                    $query = $db->query("SELECT * FROM recettes WHERE id = ".$idRecette);
+                    $recette = $query->fetchAll()[0];
+                    $query->closeCursor();
+                
+                    if($recette["idAuteur"] != $idUtilisateur)
+                        header("Location: error/error_acces.php");
+                
                 ?>
                 <h1>Modifier une recette</h1>
                 <form method="post" action="scripts/script_modification_recette.php?id=<?php echo $recette["id"]; ?>">
