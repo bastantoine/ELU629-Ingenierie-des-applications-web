@@ -48,8 +48,8 @@ if(!isset($_SESSION["connecte"]) || $_SESSION['connecte'] == false){
 							?>
 								<tr>
 									<td><a href="recette.php?id=<?php echo $recette["id"]; ?>"><?php echo $recette["nom"]; ?></a></td>
-									<td><a href="modifier_recette.php?id=<?php echo $recette["id"]; ?>">Modifier la recette</a></td>
-									<td><a href="supprimer_recette.php?id=<?php echo $recette["id"]; ?>">Supprimer la recette</a></td>
+									<td><a href="modification_recette.php?id=<?php echo $recette["id"]; ?>">Modifier la recette</a></td>
+									<td><a href="script_suppression_recette.php?id=<?php echo $recette["id"]; ?>">Supprimer la recette</a></td>
 								</tr>
 							<?php
 						}
@@ -63,12 +63,14 @@ if(!isset($_SESSION["connecte"]) || $_SESSION['connecte'] == false){
 					<table>
 					<?php
 
-						$query = $db->query("SELECT commentaire.commentaire, recettes.nom FROM commentaire JOIN recettes ON recettes.id = commentaire.idRecette WHERE commentaire.idAuteur = ".$_SESSION["idUtilisateur"]);
+						$query = $db->query("SELECT commentaire.id, commentaire.commentaire, recettes.nom FROM commentaire JOIN recettes ON recettes.id = commentaire.idRecette WHERE commentaire.idAuteur = ".$_SESSION["idUtilisateur"]);
 						while($commentaire = $query->fetch()) {
 							?>
 								<tr>
 									<td><?php echo $commentaire["nom"]; ?></td>
 									<td><?php echo $commentaire["commentaire"]; ?></td>
+									<td><a href="modification_commentaire.php?id=<?php echo $commentaire["id"]; ?>">Modifier le commentaire</a></td>
+									<td><a href="script_suppression_commentaire.php?id=<?php echo $commentaire["id"]; ?>">Supprimer le commentaire</a></td>
 								</tr>
 							<?php
 						}

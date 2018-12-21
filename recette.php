@@ -3,7 +3,7 @@
 <html lang="fr">
 <head>
 	<meta charset="utf-8">
-	<title>Accueil</title>
+	<title>Recette</title>
 	<link rel="stylesheet" media="screen" href="style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="An exemple of web page for cooking application.">
@@ -42,7 +42,7 @@
 				$recette = $query->fetchAll()[0];
 				$query->closeCursor();
 
-				$query = $db->query("SELECT nom, prenom FROM utilisateurs WHERE id = ".$recette["idAuteur"]);
+				$query = $db->query("SELECT * FROM utilisateurs WHERE id = ".$recette["idAuteur"]);
 				$auteur = $query->fetchAll()[0];
 				$query->closeCursor();
 
@@ -73,6 +73,24 @@
 					<h5>Etapes</h5>
 					<?php echo str_replace(array("\r\n", "\n", "\r"),'<br />' ,$recette["recette"]); ?></br>
 					Recette par : <?php echo $auteur["prenom"]." ".$auteur["nom"]; ?>
+
+					<h5>Commentaires</h5>
+					<a href="ajout_commentaire.php?idRecette=<?php echo $idRecette; ?>">Ajouter un commentaire</a>
+					<?php
+
+						$query = $db->query("SELECT commentaire.date, commentaire.commentaire, utilisateurs.nom, utilisateurs.prenom FROM commentaire JOIN utilisateurs ON utilisateurs.id = commentaire.idAuteur WHERE idRecette = ".$idRecette);
+						echo '<ul>';
+						while($commentaire = $query->fetch()) {
+							?>
+
+							<li><?php echo $commentaire["prenom"]." ".$commentaire["nom"].' - '.$commentaire["date"].' : '.$commentaire["commentaire"]; ?></li>
+
+							<?php
+						}
+						echo '</ul>';
+						$query->closeCursor();	
+
+					?>
 				</p>
 			</div>
 		</div>

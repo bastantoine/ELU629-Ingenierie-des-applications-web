@@ -10,12 +10,7 @@
 	<form style="background-color:white;" method="post" action="script_ajout_recette.php">
 	Nom de la recette : <input type="text" name="nom_recette"><br>
 	Catégorie(s) :
-	<!-- <select name="categorie" size="3">
-		<option value="entree">Entrée</option>
-		<option value="plat">Plat</option>
-		<option value="dessert">Dessert</option>
-	</select><br/> -->
-	<input type="radio" name="categorie" value="entree"> Entrée<br>
+	<input type="radio" name="categorie" value="entree" > Entrée<br>
 	<input type="radio" name="categorie" value="plat"> Plat<br>
 	<input type="radio" name="categorie" value="dessert"> Dessert<br>
 	Difficulté : <select name="difficulte"><?php for($i=1; $i<=5;$i++){ echo "<option>$i"; }?></select><br>

@@ -1,6 +1,19 @@
 <?php
 session_start();
+
+if(!isset($_POST) || !isset($_GET))
+    header("Location: index.php");
+
 include("connexionpdo.php");
+
+$idRecette = intval($_GET["id"]);
+
+$query = $db->query("SELECT idAuteur FROM recettes WHERE id = ".$idRecette);
+$idAuteur = $query->fetchAll()[0]["idAuteur"];
+$query->closeCursor();
+
+if($idAuteur != $_SESSION["idUtilisateur"] && $_SESSION["statut"] != "admin")
+    header("Location: index.php");
 
 function calculerTemps($temps) {
 	$array = explode(":", $temps);
@@ -24,32 +37,25 @@ function definirCategorie(&$entree,&$plat,&$dessert) {
 		$dessert = 0;
 	}
 }
+
 $entree = 0;
 $plat = 0;
 $dessert = 0;
 definirCategorie($entree, $plat, $dessert);
 
-$query = $db->prepare('INSERT INTO recettes(nom, entree, plat, dessert, cout, difficulte, idAuteur, temps, ingredients, recette) VALUES(:nom, :entree, :plat, :dessert, :cout, :difficulte, :idAuteur, :temps, :ingredients, :recette)');
+$query = $db->prepare('UPDATE recettes SET nom = :nom, entree = :entree, plat = :plat, dessert = :dessert, cout = :cout, difficulte = :difficulte, temps = :temps, ingredients = :ingredients, recette = :recette WHERE id = '.$idRecette);
 $query->bindValue("nom", $_POST["nom_recette"]);
 $query->bindValue("entree", $entree);
 $query->bindValue("plat", $plat);
 $query->bindValue("dessert", $dessert);
 $query->bindValue("cout", $_POST["cout"]);
 $query->bindValue("difficulte", $_POST["difficulte"]);
-$query->bindValue("idAuteur", $_SESSION["idUtilisateur"]);
 $query->bindValue("temps", calculerTemps($_POST["temps"]));
 $query->bindValue("ingredients", $_POST["ingredients"]);
 $query->bindValue("recette", $_POST["recette"]);
 $query->execute();
 $query->closeCursor();
 
-$query = $db->query("SELECT id FROM recettes ORDER BY id DESC LIMIT 1");
-$id = $query->fetchAll()[0]["id"];
-$query->closeCursor();
-
-include("script_update_type.php");
-updateTypeUtilisateur($_SESSION["idUtilisateur"]);
-
-header("Location: recette.php?id=".$id);
+header("Location: recette.php?id=".$idRecette);
 
 ?>
