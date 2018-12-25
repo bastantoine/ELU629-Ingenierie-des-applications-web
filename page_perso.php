@@ -35,7 +35,6 @@
 					Adresse email : <?php echo $user["email"]; ?><br/>
 					Catégorie : <?php echo $user["type"]; ?><br/>
 					Statut : <?php echo $user["statut"]; ?><br/>
-					Id : <?php echo $_SESSION["idUtilisateur"]; ?><br/>
 	
 					<a href="modification_utilisateur.php?id=<?php echo $_SESSION["idUtilisateur"]; ?>"><button class="btn btn-default">Modifier mes informations</button></a>
 					
